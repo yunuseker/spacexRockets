@@ -3,6 +3,7 @@ package com.yunuseker.rocket;
 import android.app.Activity;
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.yunuseker.rocket.di.DaggerAppComponent;
 
 import javax.inject.Inject;
@@ -23,6 +24,7 @@ public class App extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
         setupDagger();
+        Stetho.initializeWithDefaults(this);
     }
 
     private void setupDagger() {

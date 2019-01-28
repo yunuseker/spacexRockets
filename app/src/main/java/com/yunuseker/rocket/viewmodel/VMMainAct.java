@@ -15,12 +15,18 @@ import io.reactivex.schedulers.Schedulers;
  * younuseker@gmail.com
  */
 public class VMMainAct extends BaseViewModel {
+    private RocketUsecase rocketUsecase;
     private MutableLiveData<List<RocketViewEntity>> rocketList = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLoading=new MutableLiveData<>();
     private int pageOffset = 1;
 
     @Inject
     public VMMainAct(RocketUsecase rocketUsecase) {
+        this.rocketUsecase=rocketUsecase;
+        loadRocketData();
+    }
+
+    public void loadRocketData() {
         isLoading.postValue(true);
         Disposable disposable = rocketUsecase.getRockets(pageOffset)
                 .subscribeOn(Schedulers.io())
@@ -31,6 +37,7 @@ public class VMMainAct extends BaseViewModel {
                 }, this::handleError);
         super.disposable.add(disposable);
     }
+
 
     public MutableLiveData<List<RocketViewEntity>> getRocketList() {
         return rocketList;

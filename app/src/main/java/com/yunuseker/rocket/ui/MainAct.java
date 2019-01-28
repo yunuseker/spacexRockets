@@ -11,6 +11,7 @@ import com.yunuseker.rocket.base.BaseRecyclerAdapter;
 import com.yunuseker.rocket.databinding.ActMainBinding;
 import com.yunuseker.rocket.ui.listener.RocketRowClickListener;
 import com.yunuseker.rocket.ui.viewentity.RocketViewEntity;
+import com.yunuseker.rocket.utils.PaginationScrollListener;
 import com.yunuseker.rocket.viewmodel.VMMainAct;
 
 /**
@@ -35,6 +36,12 @@ public class MainAct extends BaseActivity<VMMainAct, ActMainBinding> implements 
         BaseRecyclerAdapter<RocketRowClickListener> adapter = new BaseRecyclerAdapter<>(R.layout.row_rocket, this);//dagger la inject edilebilir.
         dataBinding.rvMainRockets.setAdapter(adapter);
         dataBinding.rvMainRockets.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        dataBinding.rvMainRockets.addOnScrollListener(new PaginationScrollListener() {
+            @Override
+            public void loadMore() {
+                viewModel.loadRocketData();
+            }
+        });
     }
 
     @Override

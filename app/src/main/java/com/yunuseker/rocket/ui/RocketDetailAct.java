@@ -1,8 +1,10 @@
 package com.yunuseker.rocket.ui;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
 import com.yunuseker.rocket.R;
 import com.yunuseker.rocket.base.BaseActivity;
 import com.yunuseker.rocket.databinding.ActRocketDetailBinding;
@@ -18,7 +20,7 @@ public class RocketDetailAct extends BaseActivity<VMRocketDetailAct, ActRocketDe
 
     public static void start(Context context, RocketViewEntity rocketViewEntity) {
         Intent starter = new Intent(context, RocketDetailAct.class);
-        starter.putExtra(ROCKET_VE,rocketViewEntity);
+        starter.putExtra(ROCKET_VE, rocketViewEntity);
         context.startActivity(starter);
     }
 
@@ -35,6 +37,10 @@ public class RocketDetailAct extends BaseActivity<VMRocketDetailAct, ActRocketDe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getIntent().getExtras() == null) {
+            return;
+        }
+        dataBinding.setData(getIntent().getExtras().getParcelable(ROCKET_VE));
     }
 }
 

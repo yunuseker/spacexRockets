@@ -1,5 +1,6 @@
 package com.yunuseker.rocket.di;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.yunuseker.rocket.BuildConfig;
 import com.yunuseker.rocket.data.remote.Api;
@@ -20,6 +21,7 @@ public class NetworkModule {
     @Singleton
     OkHttpClient provideOkHttpClient() {
         return new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(chain -> {

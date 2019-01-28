@@ -9,28 +9,9 @@ import javax.inject.Inject;
  */
 public class VMRocketDetailAct extends BaseViewModel {
 
-    private MutableLiveData<String> username = new MutableLiveData<>();
-    private MutableLiveData<String> password = new MutableLiveData<>();
-    private MutableLiveData<Boolean> loginStatus = new MutableLiveData<>();
-
     @Inject
     public VMRocketDetailAct() {
 
     }
 
-    public void doLogin(String token) {
-
-    }
-
-    public MutableLiveData<String> getPassword() {
-        return password;
-    }
-
-    public MutableLiveData<String> getUsername() {
-        return username;
-    }
-
-    public MutableLiveData<Boolean> getLoginStatus() {
-        return loginStatus;
-    }
 }
